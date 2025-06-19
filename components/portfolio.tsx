@@ -8,24 +8,24 @@ import Link from "next/link"
 const projects = [
   {
     id: 1,
-    title: "Ecommerce Site for XYZ",
+    title: "Personal Site for Afiii",
     category: "Web Development",
-    image: "/placeholder.svg?height=600&width=800",
-    link: "https://example-ecommerce.com", // Replace with actual project URL
+    image: "/image/afii.webp?height=600&width=800",
+    link: "https://madewebs.github.io/Afiii/", // Replace with actual project URL
   },
   {
     id: 2,
-    title: "Social Media Campaign for ABC",
+    title: "Web Development",
     category: "Social Media Marketing",
     image: "/placeholder.svg?height=600&width=800",
     link: "https://instagram.com/abccompany", // Replace with actual social media URL
   },
   {
     id: 3,
-    title: "Brand Identity for DEF",
-    category: "Branding & Design",
-    image: "/placeholder.svg?height=600&width=800",
-    link: "https://defcompany.com", // Replace with actual project URL
+    title: "Personal Site for Carbon Viper",
+    category: "Web Development",
+    image: "/image/carbon.webp?height=600&width=800",
+    link: "https://madewebs.github.io/carbonviper/", // Replace with actual project URL
   },
   {
     id: 4,
@@ -37,14 +37,14 @@ const projects = [
   {
     id: 5,
     title: "Instagram Strategy for JKL",
-    category: "Social Media Marketing",
+    category: "Web Development",
     image: "/placeholder.svg?height=600&width=800",
     link: "https://instagram.com/jklbrand", // Replace with actual social media URL
   },
   {
     id: 6,
     title: "Logo Design for MNO",
-    category: "Branding & Design",
+    category: "Web Development",
     image: "/placeholder.svg?height=600&width=800",
     link: "https://mnocompany.com", // Replace with actual project URL
   },
