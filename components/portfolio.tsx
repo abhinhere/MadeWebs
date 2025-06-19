@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+import Link from "next/link"
 
 const projects = [
   {
@@ -102,7 +103,9 @@ export default function Portfolio() {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-gray-400 text-sm">Click on any project to visit the live website</p>
+          <Link href="https://www.instagram.com/made_webs">
+          <p className="text-gray-400 text-sm">More</p>
+          </Link>
         </div>
       </div>
     </section>
