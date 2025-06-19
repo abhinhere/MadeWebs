@@ -62,20 +62,7 @@ export default function Navbar() {
                     "brightness(0) saturate(100%) invert(84%) sepia(29%) saturate(1686%) hue-rotate(162deg) brightness(101%) contrast(101%)",
                 }}
               />
-              {/* Subtle glow effect on text hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Image
-                  src="/madefont.png"
-                  alt="MADEWEBS"
-                  width={scrolled ? 120 : 140}
-                  height={scrolled ? 25 : 30}
-                  className="blur-sm"
-                  style={{
-                    filter:
-                      "brightness(0) saturate(100%) invert(84%) sepia(29%) saturate(1686%) hue-rotate(162deg) brightness(101%) contrast(101%)",
-                  }}
-                />
-              </div>
+              
             </div>
           </div>
 
