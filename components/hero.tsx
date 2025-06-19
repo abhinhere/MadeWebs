@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function Hero() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -97,15 +98,19 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
+            <Link href="https://wa.me/917559907591?text=Website%20Enquiry">
             <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-6 text-lg transform hover:scale-105 transition-all duration-300">
               Get a Free Quote
             </Button>
+            </Link>
+            <Link href="#works">
             <Button
               variant="outline"
               className="border-cyan-500 text-cyan-400 hover:bg-cyan-950/50 px-8 py-6 text-lg transform hover:scale-105 transition-all duration-300"
             >
-              View Our Works
+              Our Works
             </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

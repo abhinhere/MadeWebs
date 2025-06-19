@@ -102,7 +102,7 @@ export default function Navbar() {
           <Button className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transform hover:scale-105 transition-all duration-300">
             Get Quote
           </Button>
-        </Link>
+          </Link>
           {/* Mobile Navigation - Direct Links */}
           <nav className="md:hidden flex items-center space-x-4">
             <Link href="#about" className="text-gray-300 hover:text-cyan-400 transition-colors text-sm">

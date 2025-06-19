@@ -9,17 +9,17 @@ const services = [
   {
     icon: <Code className="h-12 w-12 text-cyan-400" />,
     title: "Web Development",
-    description: "Portfolio sites, eCommerce, landing pages with clean UI.",
+    description: "Portfolio sites, Business sites, landing pages with clean UI.",
   },
   {
     icon: <TrendingUp className="h-12 w-12 text-cyan-400" />,
     title: "Social Media Marketing",
-    description: "Instagram strategy, creatives, reels, and ad campaigns.",
+    description: "Instagram strategy, creatives, reels, and Page management.",
   },
   {
     icon: <PenTool className="h-12 w-12 text-cyan-400" />,
     title: "Branding & Design",
-    description: "Logo, identity packs, post templates, and brand kits.",
+    description: "Logo, identity packs, post templates, and Special Day templates.",
   },
 ]
 
