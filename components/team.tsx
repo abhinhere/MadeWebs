@@ -4,37 +4,37 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Instagram, Linkedin, Twitter, Github } from "lucide-react"
+import { useState, useEffect } from "react"
 
 const teamMembers = [
   {
     id: 1,
-    name: "Alex Johnson",
+    name: " Abhin C",
     role: "Founder & Lead Developer",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Full-stack developer with 8+ years of experience in creating digital solutions.",
     social: {
-      linkedin: "https://linkedin.com/in/alexjohnson",
-      twitter: "https://twitter.com/alexjohnson",
-      github: "https://github.com/alexjohnson",
-      instagram: "https://instagram.com/alexjohnson",
+      linkedin: "https://linkedin.com/in/abhinc",
+      github: "https://github.com/abhinc",
+      instagram: "https://instagram.com/abhinc",
     },
   },
   {
     id: 2,
-    name: "Sarah Chen",
-    role: "Creative Director",
+    name: "Amarnath S",
+    role: "Lead Developer",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Brand strategist and designer passionate about creating memorable visual experiences.",
     social: {
-      linkedin: "https://linkedin.com/in/sarahchen",
-      instagram: "https://instagram.com/sarahchen",
-      twitter: "https://twitter.com/sarahchen",
+      linkedin: "https://linkedin.com/in/amarnaths",
+      instagram: "https://instagram.com/amarnaths",
+      github: "https://github.com/amarnaths",
     },
   },
   {
     id: 3,
-    name: "Mike Rodriguez",
-    role: "Social Media Strategist",
+    name: "Rashdhan",
+    role: "Marketing Strategist",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Digital marketing expert specializing in social media growth and engagement.",
     social: {
@@ -45,8 +45,8 @@ const teamMembers = [
   },
   {
     id: 4,
-    name: "Emma Wilson",
-    role: "UI/UX Designer",
+    name: "Anaswara A",
+    role: "Creative Head",
     image: "/placeholder.svg?height=400&width=400",
     bio: "User experience designer focused on creating intuitive and beautiful interfaces.",
     social: {
@@ -55,9 +55,87 @@ const teamMembers = [
       github: "https://github.com/emmawilson",
     },
   },
+  {
+    id: 5,
+    name: "Jomin Benny",
+    role: "Full Stack Developer",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Server-side specialist with expertise in scalable architecture and database optimization.",
+    social: {
+      linkedin: "https://linkedin.com/in/davidpark",
+      github: "https://github.com/davidpark",
+      twitter: "https://twitter.com/davidpark",
+    },
+  },
+  {
+    id: 6,
+    name: "Nandhana TS",
+    role: "Social Media Manager",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Experienced project coordinator ensuring smooth delivery and client satisfaction.",
+    social: {
+      linkedin: "https://linkedin.com/in/lisathompson",
+      instagram: "https://instagram.com/lisathompson",
+      twitter: "https://twitter.com/lisathompson",
+    },
+  },
+  {
+    id: 6,
+    name: "Devapriya",
+    role: "Branding Specialist",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Experienced project coordinator ensuring smooth delivery and client satisfaction.",
+    social: {
+      linkedin: "https://linkedin.com/in/lisathompson",
+      instagram: "https://instagram.com/lisathompson",
+      twitter: "https://twitter.com/lisathompson",
+    },
+  },
+  {
+    id: 7,
+    name: "Adhan",
+    role: "Media Lead",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Experienced project coordinator ensuring smooth delivery and client satisfaction.",
+    social: {
+      linkedin: "https://linkedin.com/in/lisathompson",
+      instagram: "https://instagram.com/lisathompson",
+      twitter: "https://twitter.com/lisathompson",
+    },
+  },
 ]
 
 export default function Team() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+
+    checkScreenSize()
+    window.addEventListener("resize", checkScreenSize)
+
+    return () => window.removeEventListener("resize", checkScreenSize)
+  }, [])
+
+  const itemsPerView = isMobile ? 2 : 4
+  const maxIndex = Math.ceil(teamMembers.length / itemsPerView) - 1
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex >= maxIndex ? 0 : prevIndex + 1))
+    }, 3000) // Change slide every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [maxIndex])
+
+  const getVisibleMembers = () => {
+    const startIndex = currentIndex * itemsPerView
+    return teamMembers.slice(startIndex, startIndex + itemsPerView)
+  }
+
   return (
     <section id="team" className="py-20 bg-gray-950 relative overflow-hidden">
       {/* Animated background elements */}
@@ -77,84 +155,113 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              className="group relative"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-300 group-hover:-translate-y-2">
-                <div className="relative mb-6">
-                  <div className="aspect-square relative overflow-hidden rounded-xl">
-                    <Image
-                      src={member.image || "/placeholder.svg"}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
+        {/* Sliding carousel container */}
+        <div className="relative overflow-hidden">
+          <motion.div
+            className={`grid gap-4 md:gap-8 ${isMobile ? "grid-cols-2" : "grid-cols-4"}`}
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
+          >
+            {getVisibleMembers().map((member, index) => (
+              <motion.div
+                key={member.id}
+                className="group relative"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-300 group-hover:-translate-y-2">
+                  <div className="relative mb-6">
+                    <div className="aspect-square relative overflow-hidden rounded-xl">
+                      <Image
+                        src={member.image || "/placeholder.svg"}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
 
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                  <p className="text-cyan-400 font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-400 text-sm">{member.bio}</p>
-                </div>
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg lg:text-xl font-bold text-white mb-1">{member.name}</h3>
+                    <p className="text-cyan-400 font-medium mb-3 text-sm lg:text-base">{member.role}</p>
+                    <p className="text-gray-400 text-xs lg:text-sm">{member.bio}</p>
+                  </div>
 
-                <div className="flex justify-center space-x-3">
-                  {member.social.linkedin && (
-                    <Link
-                      href={member.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                      <span className="sr-only">LinkedIn</span>
-                    </Link>
-                  )}
-                  {member.social.twitter && (
-                    <Link
-                      href={member.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
-                    >
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Twitter</span>
-                    </Link>
-                  )}
-                  {member.social.instagram && (
-                    <Link
-                      href={member.social.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
-                    >
-                      <Instagram className="h-5 w-5" />
-                      <span className="sr-only">Instagram</span>
-                    </Link>
-                  )}
-                  {member.social.github && (
-                    <Link
-                      href={member.social.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
-                    >
-                      <Github className="h-5 w-5" />
-                      <span className="sr-only">GitHub</span>
-                    </Link>
-                  )}
+                  <div className="flex justify-center space-x-3">
+                    {member.social.linkedin && (
+                      <Link
+                        href={member.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
+                      >
+                        <Linkedin className="h-4 w-4 lg:h-5 lg:w-5" />
+                        <span className="sr-only">LinkedIn</span>
+                      </Link>
+                    )}
+                    {member.social.twitter && (
+                      <Link
+                        href={member.social.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
+                      >
+                        <Twitter className="h-4 w-4 lg:h-5 lg:w-5" />
+                        <span className="sr-only">Twitter</span>
+                      </Link>
+                    )}
+                    {member.social.instagram && (
+                      <Link
+                        href={member.social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
+                      >
+                        <Instagram className="h-4 w-4 lg:h-5 lg:w-5" />
+                        <span className="sr-only">Instagram</span>
+                      </Link>
+                    )}
+                    {member.social.github && (
+                      <Link
+                        href={member.social.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-cyan-400 transition-colors p-2 hover:bg-cyan-500/10 rounded-lg"
+                      >
+                        <Github className="h-4 w-4 lg:h-5 lg:w-5" />
+                        <span className="sr-only">GitHub</span>
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Dots indicator */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-cyan-400 scale-125" : "bg-gray-600 hover:bg-gray-500"
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
           ))}
+        </div>
+
+        {/* Progress indicator */}
+        <div className="flex justify-center mt-4">
+          <div className="text-gray-400 text-sm">
+            {currentIndex + 1} / {maxIndex + 1}
+          </div>
         </div>
       </div>
     </section>
