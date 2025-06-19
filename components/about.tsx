@@ -24,7 +24,7 @@ export default function About() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mb-8"></div>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              MADEWEBS was founded in 2020 with a passion for helping brands go digital. After a short break, we're back
+              MadeWebs was founded in 2020 with a passion for helping brands go digital. After a short break, we're back
               stronger than ever in 2025 to build, brand, and boost your business.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">

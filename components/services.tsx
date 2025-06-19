@@ -14,7 +14,7 @@ const services = [
   {
     icon: <TrendingUp className="h-12 w-12 text-cyan-400" />,
     title: "Social Media Marketing",
-    description: "Instagram strategy, creatives, reels, and Page management .",
+    description: "Instagram strategy, creatives, reels, and Page management.",
   },
   {
     icon: <PenTool className="h-12 w-12 text-cyan-400" />,
