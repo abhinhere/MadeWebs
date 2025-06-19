@@ -60,15 +60,15 @@ export default function Footer() {
               love.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <Link href="https://www.instagram.com/made_webs" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <Link href="https://www.linkedin.com/company/madewebs/" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <Link href="https://wa.me/917559907591" className="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
                 <MessageSquare className="h-5 w-5" />
                 <span className="sr-only">WhatsApp</span>
               </Link>
