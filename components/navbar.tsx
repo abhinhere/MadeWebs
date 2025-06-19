@@ -98,16 +98,13 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </nav>
-
+          <Link href="https://wa.me/917559907591?text=Website%20Enquiry">
           <Button className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transform hover:scale-105 transition-all duration-300">
             Get Quote
           </Button>
-
+        </Link>
           {/* Mobile Navigation - Direct Links */}
           <nav className="md:hidden flex items-center space-x-4">
-            <Link href="#home" className="text-gray-300 hover:text-cyan-400 transition-colors text-sm">
-              Home
-            </Link>
             <Link href="#about" className="text-gray-300 hover:text-cyan-400 transition-colors text-sm">
               About
             </Link>
