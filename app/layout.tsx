@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "MADEWEBS | Web Development & Social Media Marketing Agency",
   description: "Crafting websites and marketing strategies to grow your brand.",
-    generator: 'v0.dev'
+    generator: 'Abhin.c'
 }
 
 export default function RootLayout({
