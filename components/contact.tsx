@@ -25,10 +25,10 @@ export default function Contact() {
     e.preventDefault()
 
     // Create WhatsApp message
-    const message = `*New Contact Form Submission*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.message}`
+    const message = `For Enquiry%0AName: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
 
     // WhatsApp number (replace with your actual WhatsApp number)
-    const whatsappNumber = "919876543210" // Replace with your WhatsApp number
+    const whatsappNumber = "917559907591" // Replace with your WhatsApp number
 
     // Open WhatsApp with pre-filled message
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank")
@@ -136,7 +136,7 @@ export default function Contact() {
                   <Mail className="h-6 w-6 text-cyan-400 mr-4 mt-1" />
                   <div>
                     <h4 className="text-white font-medium">Email</h4>
-                    <p className="text-gray-400">hello@madewebs.in</p>
+                    <p className="text-gray-400">madewebs20@gmail.com</p>
                   </div>
                 </div>
 
@@ -144,7 +144,7 @@ export default function Contact() {
                   <MapPin className="h-6 w-6 text-cyan-400 mr-4 mt-1" />
                   <div>
                     <h4 className="text-white font-medium">Location</h4>
-                    <p className="text-gray-400">Mumbai, India</p>
+                    <p className="text-gray-400">calicut university, India</p>
                   </div>
                 </div>
 
@@ -152,7 +152,7 @@ export default function Contact() {
                   <MessageSquare className="h-6 w-6 text-cyan-400 mr-4 mt-1" />
                   <div>
                     <h4 className="text-white font-medium">WhatsApp</h4>
-                    <p className="text-gray-400">+91 98765 43210</p>
+                    <p className="text-gray-400">+91 75599 07591</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function Contact() {
 
             <Button
               className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
-              onClick={() => window.open("https://wa.me/919876543210", "_blank")}
+              onClick={() => window.open("https://wa.me/917559907591", "_blank")}
             >
               <MessageSquare className="h-5 w-5" />
               Chat on WhatsApp
