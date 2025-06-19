@@ -73,7 +73,7 @@ export default function About() {
                     <br />
                     {"    "}
                     <span className="text-purple-400">return</span> <span className="text-blue-400">brand</span>.
-                    <span className="text-green-400">makeBeautiful</span>()<span className="text-gray-500">;</span>
+                    <span className="text-green-400">Beautiful</span>()<span className="text-gray-500">;</span>
                     <br />
                     {"  }"},
                     <br />
