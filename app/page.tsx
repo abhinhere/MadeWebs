@@ -1,24 +1,12 @@
-import Navbar from "@/components/navbar"
-import Hero from "@/components/hero"
-import Services from "@/components/services"
-import Portfolio from "@/components/portfolio"
-import About from "@/components/about"
-import Team from "@/components/team"
-import Testimonials from "@/components/testimonials"
-import Contact from "@/components/contact"
-import Footer from "@/components/footer"
+
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <Navbar />
-      <Hero />
-      <Services />
-      <Portfolio />
-      <About />
-      <Team />
-      <Contact />
-      <Footer />
-    </main>
-  )
+    <div className="min-h-screen flex items-center justify-center text-5xl bg-[#fefefe] flex-col">
+      <p className="absolute top-0 left-6 font-geist text-sm md:text-xl tracking-tigher font-medium flex items-center justify-center">madewebs ©</p>
+       Under Development
+       <p className="italic font-medium"> Back Soon</p>
+
+    </div>
+  );
 }
