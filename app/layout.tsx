@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
+import LenisProvider from "./Components/LenisProvider";
+import CustomCursor from "./Components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <LenisProvider>
+        <body className="min-h-full flex flex-col bg-[#078fcd]">
+          <CustomCursor />
+          {children}
+        </body>
+      </LenisProvider>
     </html>
   );
 }
