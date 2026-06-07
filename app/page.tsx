@@ -287,7 +287,7 @@ export default function Home() {
 
         {/* Massive Bottom Text & Copyright */}
         <div className="flex flex-col items-center mt-20 w-full overflow-hidden">
-          <div className="flex flex-col md:flex-row w-full justify-between items-center gap-4 mt-8 border-t border-white/40 pt-6 text-sm text-gray-800 font-geist font-light md:max-w-[90%] lg:max-w-[80%] mx-auto">
+          <div className="flex flex-col md:flex-row w-full justify-between items-center mt-8 border-t border-white/40 pt-6 text-sm text-gray-800 font-geist font-light md:max-w-[90%] lg:max-w-[80%] mx-auto">
             <p>© {new Date().getFullYear()} MadeWebs. All rights reserved.</p>
             <p>Designed with passion in India</p>
           </div>

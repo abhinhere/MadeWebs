@@ -122,7 +122,7 @@ export default function Services() {
             {servicesData.map((service, idx) => (
               <div key={idx} className="service-card flex flex-col gap-2 md:gap-4 border-t border-white/20 pt-3 md:pt-6 w-[85vw] md:w-[40vw] lg:w-[30vw] whitespace-normal shrink-0">
                 <div className="flex justify-between items-end">
-                  <h3 className="text-[2rem] md:text-[3rem] font-melody tracking-tighter text-white leading-none max-w-[50%] md:max-w-none">
+                  <h3 className="text-[2rem] md:text-[3rem] font-melody tracking-tighter text-white leading-none max-w-[40%] md:max-w-none">
                     {service.title}
                   </h3>
                   <span className="text-[1.2rem] md:text-[1.5rem] font-geist font-light text-white/40 leading-none">
