@@ -24,7 +24,7 @@ export default function TextReveal({ text, className }: TextRevealProps) {
     // Select all the individual word spans
     const words = gsap.utils.toArray(containerRef.current.querySelectorAll(".reveal-word"));
     
-    // Create the buttery smooth scrub animation
+    // Create the buttery smooth scrub animation on all screen sizes
     gsap.fromTo(
       words,
       { 
@@ -36,8 +36,8 @@ export default function TextReveal({ text, className }: TextRevealProps) {
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",   // Start when the top of the text hits 80% down the screen
-          end: "bottom 50%",  // Finish when the bottom of the text hits 50% of the screen
+          start: "top 65%",   // Start later (added delay) when the text hits 65% down the screen
+          end: "bottom 45%",  // Finish when the bottom of the text hits 45% of the screen
           scrub: 1.5,         // Adds 1.5 seconds of smoothing lag for that "buttery" feel
         }
       }

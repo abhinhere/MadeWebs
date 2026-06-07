@@ -7,22 +7,29 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      // Check if the device is mobile (width < 768px)
-      setIsMobile(window.innerWidth < 768);
+    // Detect mobile: touch-capable + small screen
+    // Lenis touch handling breaks position:sticky and ScrollTrigger on real mobile browsers
+    const checkMobile = () => {
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsMobile(hasTouch && isSmallScreen);
     };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // By rendering ReactLenis as a sibling rather than a wrapper, we can safely
-  // completely unmount it on mobile without destroying the rest of the React tree!
   return (
     <>
       {!isMobile && (
-        <ReactLenis root options={{ smoothWheel: true }} />
+        <ReactLenis
+          root
+          options={{
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Buttery smooth exponential deceleration
+            smoothWheel: true,
+          }}
+        />
       )}
       {children}
     </>

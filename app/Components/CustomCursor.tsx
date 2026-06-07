@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
-  
+
   // Track raw and smoothed mouse positions for trailing effect
   const mouse = useRef({ x: 0, y: 0 });
   const smoothMouse = useRef({ x: 0, y: 0 });
@@ -23,7 +23,7 @@ const CustomCursor = () => {
     // Set initial position to center of screen
     mouse.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     smoothMouse.current = { ...mouse.current };
-    
+
     // Immediately set the cursor's initial position
     gsap.set(cursorRef.current, {
       x: window.innerWidth / 2,
@@ -38,7 +38,7 @@ const CustomCursor = () => {
       const hoveringText = !!target.closest('p, h1, h2, h3, h4, h5, h6, span, a, button, li');
       // Check if we are over a white section
       const hoveringWhiteBg = !!target.closest('.bg-white');
-      
+
       let newMode = "normal";
       if (hoveringText) {
         newMode = "difference-large";
@@ -63,7 +63,7 @@ const CustomCursor = () => {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     // Ticker for silky smooth following (lerp)
     const ticker = gsap.ticker.add(() => {
@@ -71,9 +71,9 @@ const CustomCursor = () => {
       const deltaY = mouse.current.y - smoothMouse.current.y;
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-      // 0.15 is the lerp factor
-      smoothMouse.current.x += deltaX * 0.15;
-      smoothMouse.current.y += deltaY * 0.15;
+      // Faster lerp (0.25) for tighter cursor following with less perceived lag
+      smoothMouse.current.x += deltaX * 0.25;
+      smoothMouse.current.y += deltaY * 0.25;
 
       // Calculate rotation angle. Only update if moving to avoid snapping back to 0.
       let angle = previousAngle.current;
@@ -82,13 +82,12 @@ const CustomCursor = () => {
         previousAngle.current = angle;
       }
 
-      // Map velocity to squeeze (scale) and motion blur
+      // Map velocity to squeeze (scale) — removed the expensive filter: blur()
       const maxVelocity = 100; // Cap for max stretch
       const normalizedVelocity = Math.min(distance / maxVelocity, 1);
-      
+
       const scaleX = 1 + normalizedVelocity * 0.8; // Stretch in direction of movement
       const scaleY = 1 - normalizedVelocity * 0.4; // Squeeze perpendicular to movement
-      const blurAmount = normalizedVelocity * 3; // Max 3px blur
 
       if (cursorRef.current) {
         gsap.set(cursorRef.current, {
@@ -97,7 +96,6 @@ const CustomCursor = () => {
           rotation: angle,
           scaleX: scaleX,
           scaleY: scaleY,
-          filter: `blur(${blurAmount}px)`,
           transformOrigin: "center center"
         });
       }
@@ -112,12 +110,11 @@ const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-5 h-5 bg-white rounded-full pointer-events-none z-[9999] hidden md:block drop-shadow-md"
+      className="fixed top-0 left-0 w-5 h-5 bg-white rounded-full pointer-events-none z-[9999] hidden md:block will-change-transform"
       style={{
-        // Use margins instead of translate in style so GSAP's translate doesn't overwrite it,
-        // or just offset the initial coordinates
         marginLeft: "-10px",
         marginTop: "-10px",
+        backfaceVisibility: "hidden",
       }}
     />
   );
