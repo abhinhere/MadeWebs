@@ -28,6 +28,7 @@ export default function Works() {
                 src={work.image}
                 alt={work.title}
                 fill
+                sizes="(max-width: 768px) 75vw, (max-width: 1024px) 28vw, 22vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />

@@ -29,3 +29,10 @@ img {
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* Prevent flash of unstyled content before GSAP animations initialize */
+.hero-line,
+.hero-sub-element,
+.nav-element {
+  opacity: 0;
+}
