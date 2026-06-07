@@ -257,8 +257,8 @@ export default function Home() {
             <h2 className="text-[3rem] md:text-[4.45rem] lg:text-[5.75rem] font-melody tracking-tighter leading-[0.9]">
               Let's create <br /> something amazing.
             </h2>
-            <a href="mailto:hello@madewebs.com" className="text-[1.2rem] md:text-[1.5rem] font-geist font-light hover:opacity-70 transition-opacity border-b border-white/30 hover:border-white w-fit pb-1">
-              info@madewebs.com
+            <a href="mailto:info@madewebs.in" className="text-[1.2rem] md:text-[1.5rem] font-geist font-light hover:opacity-70 transition-opacity border-b border-white/30 hover:border-white w-fit pb-1">
+              info@madewebs.in
             </a>
           </div>
 

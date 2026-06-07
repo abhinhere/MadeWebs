@@ -23,13 +23,13 @@ export default function Works() {
       <div className="w-full mt-4 md:mt-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         <div className="flex flex-row md:flex-wrap md:justify-center gap-6 md:gap-10 w-[max-content] md:w-full pr-8 md:pr-0">
           {worksData.map((work, idx) => (
-            <a key={idx} href={work.link} target="_blank" rel="noopener noreferrer" className="relative w-[75vw] md:w-[28vw] lg:w-[22vw] xl:w-[20vw] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 group cursor-pointer">
+            <a key={idx} href={`https://${work.link}`} target="_blank" rel="noopener noreferrer" className="relative w-[75vw] md:w-[28vw] lg:w-[22vw] xl:w-[20vw] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 group cursor-pointer" >
               <Image
                 src={work.image}
                 alt={work.title}
                 fill
                 sizes="(max-width: 768px) 75vw, (max-width: 1024px) 28vw, 22vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                className="object-cover opacity-100 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
               <div className="absolute bottom-2 left-2 md:bottom-5 md:left-5">
@@ -39,6 +39,6 @@ export default function Works() {
           ))}
         </div>
       </div>
-    </section>
+    </section >
   );
 }
