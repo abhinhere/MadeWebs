@@ -70,10 +70,10 @@ export default function Contact() {
   }, { scope: containerRef });
 
   return (
-    <section id="contact" ref={containerRef} className="relative z-10 w-full px-4 md:px-8 lg:px-14 py-20 md:py-32 flex flex-col justify-center items-start md:items-center">
-      <div className="w-full md:max-w-[80%] lg:max-w-[60%] flex flex-col gap-8 md:gap-12">
+    <section id="contact" ref={containerRef} className="relative z-10 w-full px-4 md:px-14 py-20 md:py-32 flex flex-col justify-center items-start md:items-center">
+      <div className="w-full md:max-w-[60%] flex flex-col gap-8 md:gap-12">
         <div className="flex flex-col gap-4 text-start md:text-center w-full items-start md:items-center">
-          <h2 className="contact-title text-[3rem] md:text-[4rem] lg:text-[5rem] font-melody tracking-tighter text-white leading-[3rem] md:leading-[3.5rem] lg:leading-[4.5rem]">
+          <h2 className="contact-title text-[clamp(3rem,5vw,5rem)] font-melody tracking-tighter text-white leading-[3rem] md:leading-[4.5rem]">
             Let's talk about your project
           </h2>
           <p className="contact-sub font-geist font-light text-[1.1rem] md:text-[1.3rem] text-white/80 leading-[1.2rem] md:leading-[1.6rem]">

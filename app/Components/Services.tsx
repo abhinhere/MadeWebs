@@ -102,12 +102,12 @@ export default function Services() {
   return (
     <div className="relative">
       {/* h-[100vh] ensures the section perfectly fills the screen with no blank space above or below, and justify-center keeps the content perfectly centered! */}
-      <section id="services" ref={containerRef} className="w-full px-4 md:px-8 lg:px-14 h-[100dvh] flex flex-col justify-center items-start gap-4 lg:gap-8 overflow-hidden">
+      <section id="services" ref={containerRef} className="w-full px-4 md:px-14 h-[100dvh] flex flex-col justify-center items-start gap-4 md:gap-8 overflow-hidden">
 
         {/* Top Side - Title Section */}
         <div className="w-full shrink-0">
           <div ref={leftRef} className="flex flex-col w-full">
-            <p className="text-[3rem] md:text-[4rem] lg:text-[5rem] font-melody tracking-tighter text-white leading-none">
+            <p className="text-[clamp(3rem,5vw,5rem)] font-melody tracking-tighter text-white leading-none">
               Our Services
             </p>
             <p className="font-geist font-light text-[1.1rem] md:text-[1.3rem] text-white/80 max-w-xl mt-2 md:mt-3 leading-[1.2rem] md:leading-[1.6rem]">
@@ -120,7 +120,7 @@ export default function Services() {
         <div className="w-full mt-2 md:mt-4 overflow-hidden">
           <div ref={rightRef} className="inline-flex gap-4 md:gap-10 pr-8 md:pr-14 items-start pb-4 md:pb-0 will-change-transform">
             {servicesData.map((service, idx) => (
-              <div key={idx} className="service-card flex flex-col gap-2 md:gap-4 border-t border-white/20 pt-3 md:pt-6 w-[85vw] md:w-[40vw] lg:w-[30vw] whitespace-normal shrink-0">
+              <div key={idx} className="service-card flex flex-col gap-2 md:gap-4 border-t border-white/20 pt-3 md:pt-6 w-[85vw] md:w-[30vw] whitespace-normal shrink-0">
                 <div className="flex justify-between items-end">
                   <h3 className="text-[2rem] md:text-[3rem] font-melody tracking-tighter text-white leading-none max-w-[40%] md:max-w-none">
                     {service.title}

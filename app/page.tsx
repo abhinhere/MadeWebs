@@ -57,22 +57,7 @@ export default function Home() {
         "-=0.6"
       );
 
-    // 4. Hero Parallax Scroll Effect (Desktop Only)
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      gsap.to('.hero-parallax-wrapper', {
-        yPercent: 40, // Move downwards at 40% speed
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top", // Ends when the hero section leaves the top of the viewport
-          scrub: true,
-        }
-      });
-    });
-
-    // 5. Hero Text Lines Horizontal Parallax (All devices)
+    // 4. Hero Text Lines Horizontal Parallax
     const lines = gsap.utils.toArray('.hero-line');
     if (lines.length >= 3) {
       // Line 1 moves left
@@ -122,28 +107,28 @@ export default function Home() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-white opacity-10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none" />
 
       {/* NAVBAR */}
-      <nav className="relative px-4 md:px-8 lg:px-14 top-0 w-full flex items-center justify-between font-geist tracking-tighter h-20 z-30">
+      <nav className="relative px-4 md:px-14 top-0 w-full flex items-center justify-between font-geist tracking-tighter h-20 z-30">
         {/* Logo */}
         <div className="nav-element flex flex-1">
           <Image src="/madewebslogo.png" alt="logo" width={80} height={80} />
         </div>
 
         {/* Nav Links */}
-        <ul className="nav-element hidden md:flex text-[#36454F] space-x-6 lg:space-x-4 text-[0.95rem] md:text-[1.6rem] lg:text-[2rem] font-light tracking-tighter items-center justify-center flex-1">
+        <ul className="nav-element hidden lg:flex text-[#36454F] lg:space-x-6 text-[clamp(1.2rem,1.8vw,1.8rem)] font-light tracking-tighter items-center justify-center flex-1">
           <li><Link href="#services">Services</Link></li>
           <li><Link href="#works">Works</Link></li>
           <li><Link href="#contact">Contact</Link></li>
         </ul>
 
         {/* Socials */}
-        <ul className="nav-element hidden md:flex flex-1 text-[1rem] font-medium space-x-6 justify-end text-white/80">
+        <ul className="nav-element hidden lg:flex flex-1 text-[1rem] font-medium space-x-6 justify-end text-white/80">
           <li><a href="https://www.linkedin.com/company/madewebs/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">LinkedIn</a></li>
           <li><a href="mailto:info@madewebs.in" className="hover:text-white transition-colors duration-300">Gmail</a></li>
           <li><a href="https://wa.me/917559907591" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">WhatsApp</a></li>
         </ul>
 
         {/* Mobile menu button */}
-        <div className="nav-element md:hidden z-30">
+        <div className="nav-element lg:hidden z-30">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white hover:text-white/80 focus:outline-none p-2"
@@ -158,7 +143,7 @@ export default function Home() {
 
         {/* Dropdown Menu Card (Smooth scaling animation) */}
         <div
-          className={`absolute top-20 right-4 w-60 bg-white border border-[#078fcd]/10 rounded-2xl p-5 shadow-2xl z-40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top-right md:hidden ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
+          className={`absolute top-20 right-4 w-60 bg-white border border-[#078fcd]/10 rounded-2xl p-5 shadow-2xl z-40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top-right lg:hidden ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
             }`}
         >
           <ul className="flex flex-col gap-4 text-[1.2rem] font-geist tracking-tight text-[#078fcd]">
@@ -213,13 +198,13 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="hero-section relative z-10 px-4 md:px-8 lg:px-14 bg-transparent flex flex-col justify-center min-h-[calc(100svh-80px)] py-4 w-full" >
-        <div className="hero-parallax-wrapper flex flex-col w-full gap-4 md:gap-8 lg:gap-12">
+      <section className="hero-section relative z-10 px-4 md:px-14 bg-transparent flex flex-col justify-center min-h-[calc(100svh-80px)] py-4 w-full" >
+        <div className="hero-parallax-wrapper flex flex-col w-full gap-4 md:gap-12">
 
-          <h1 className="font-light text-[3rem] md:text-[4.8rem] lg:text-[6.2rem] xl:text-[8rem] font-melody md:max-w-[80%] tracking-tighter leading-[3rem] md:leading-[4rem] lg:leading-[5.4rem] xl:leading-[6rem] flex flex-col">
-            <span className="block hero-line">Building impactful web</span>
-            <span className="block hero-line">experiences, eCommerce</span>
-            <span className="block hero-line">stores, brands & visuals</span>
+          <h1 className="font-light text-[clamp(3rem,7vw,7.6rem)] font-melody md:max-w-[90%] tracking-tighter leading-[1.1] flex flex-col">
+            <span className="block hero-line md:whitespace-nowrap leading-none">Building impactful web</span>
+            <span className="block hero-line md:whitespace-nowrap leading-none">experiences, eCommerce</span>
+            <span className="block hero-line md:whitespace-nowrap leading-none">stores, brands & visuals</span>
           </h1>
 
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -231,13 +216,13 @@ export default function Home() {
         </div>
       </section >
 
-      <section className="relative z-10 w-full px-4 md:px-8 lg:px-14 py-10">
+      <section className="relative z-10 w-full px-4 md:px-14 py-10">
         <div className="flex h-auto md:min-h-screen justify-center items-start flex-col gap-4 w-full md:max-w-[90%]">
-          <p className="font-light text-[3rem] md:text-[4rem] lg:text-[5rem] text-start tracking-tighter font-melody leading-[3rem] md:leading-[4rem] lg:leading-[6rem] font-medium w-full">
+          <p className="font-light text-[clamp(3rem,5vw,5rem)] text-start tracking-tighter font-melody leading-[3rem] md:leading-[6rem] font-medium w-full">
             About Us
           </p>
           <TextReveal
-            className="text-[1.6rem] md:text-[2.2rem] lg:text-[2.8rem] text-start font-geist font-light leading-[2rem] md:leading-[2.8rem] lg:leading-[3rem]"
+            className="text-[clamp(1.6rem,2.8vw,2.8rem)] text-start font-geist font-light leading-[2rem] md:leading-[3rem]"
             text="MadeWebs is a creative digital agency specializing in web design, eCommerce development, branding, poster design, and digital marketing solutions. We help businesses build a strong and professional online presence through modern, user-focused experiences that blend creativity, strategy, and technology. From designing high-performing websites and online stores to creating impactful brand identities and marketing visuals, we deliver solutions that engage audiences, strengthen brand recognition, and support sustainable business growth."
           />
         </div>
@@ -250,11 +235,11 @@ export default function Home() {
       <Contact />
 
       <footer className="relative z-10 text-white w-full px-4 md:px-6 pt-20 pb-8 min-h-[60vh] flex flex-col justify-between">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-16 w-full md:max-w-[90%] lg:max-w-[80%] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-16 w-full md:max-w-[80%] mx-auto">
 
           {/* Call to Action */}
           <div className="flex flex-col gap-6 md:gap-10">
-            <h2 className="text-[3rem] md:text-[4.45rem] lg:text-[5.75rem] font-melody tracking-tighter leading-[0.9]">
+            <h2 className="text-[clamp(3rem,5.5vw,5.75rem)] font-melody tracking-tighter leading-[0.9]">
               Let's create <br /> something amazing.
             </h2>
             <a href="mailto:info@madewebs.in" className="text-[1.2rem] md:text-[1.5rem] font-geist font-light hover:opacity-70 transition-opacity border-b border-white/30 hover:border-white w-fit pb-1">
@@ -265,7 +250,7 @@ export default function Home() {
           {/* Links Grid */}
           <div className="flex gap-16 md:gap-24 font-geist font-light text-[1rem] md:text-[1.2rem]">
             <div className="flex flex-col gap-6">
-              <h3 className="font-medium text-gray-500 uppercase tracking-widest text-sm">Socials</h3>
+              <h3 className="font-medium text-gray-900 uppercase tracking-widest text-sm">Socials</h3>
               <ul className="flex flex-col gap-3">
                 <li><a href="https://www.instagram.com/madewebs" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Instagram</a></li>
                 <li><a href="https://www.linkedin.com/company/madewebs/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">LinkedIn</a></li>
@@ -274,7 +259,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <h3 className="font-medium text-gray-500 uppercase tracking-widest text-sm">Sitemap</h3>
+              <h3 className="font-medium text-gray-900 uppercase tracking-widest text-sm">Sitemap</h3>
               <ul className="flex flex-col gap-3">
                 <li><Link href="#" className="hover:text-gray-300 transition-colors">Home</Link></li>
                 <li><Link href="#services" className="hover:text-gray-300 transition-colors">Services</Link></li>
@@ -287,7 +272,7 @@ export default function Home() {
 
         {/* Massive Bottom Text & Copyright */}
         <div className="flex flex-col items-center mt-20 w-full overflow-hidden">
-          <div className="flex flex-col md:flex-row w-full justify-between items-center mt-8 border-t border-white/40 pt-6 text-sm text-gray-800 font-geist font-light md:max-w-[90%] lg:max-w-[80%] mx-auto">
+          <div className="flex flex-col md:flex-row w-full justify-between items-center mt-8 border-t border-white/40 pt-6 text-sm text-gray-800 font-geist font-light md:max-w-[80%] mx-auto">
             <p>© {new Date().getFullYear()} MadeWebs. All rights reserved.</p>
             <p>Designed with passion in India</p>
           </div>
