@@ -31,8 +31,18 @@ img {
 }
 
 /* Prevent flash of unstyled content before GSAP animations initialize */
+/* CSS fallback: if GSAP hasn't loaded in 2.5s, reveal elements via CSS animation */
+@keyframes fallbackReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-line,
 .hero-sub-element,
 .nav-element {
   opacity: 0;
+  animation: fallbackReveal 0.6s ease forwards;
+  animation-delay: 2.5s;
 }

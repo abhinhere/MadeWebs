@@ -138,7 +138,7 @@ export default function Home() {
         {/* Socials */}
         <ul className="nav-element hidden md:flex flex-1 text-[1rem] font-medium space-x-6 justify-end text-white/80">
           <li><a href="https://www.linkedin.com/company/madewebs/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">LinkedIn</a></li>
-          <li><a href="#" className="hover:text-white transition-colors duration-300">Gmail</a></li>
+          <li><a href="mailto:info@madewebs.in" className="hover:text-white transition-colors duration-300">Gmail</a></li>
           <li><a href="https://wa.me/917559907591" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">WhatsApp</a></li>
         </ul>
 
@@ -207,7 +207,7 @@ export default function Home() {
             className={`flex gap-4 text-[0.85rem] font-light text-[#078fcd]/80 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
           >
             <a href="https://www.linkedin.com/company/madewebs/" target="_blank" rel="noopener noreferrer" className="hover:text-[#078fcd] transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-[#078fcd] transition-colors">Gmail</a>
+            <a href="mailto:info@madewebs.in" className="hover:text-[#078fcd] transition-colors">Gmail</a>
             <a href="https://wa.me/917559907591" target="_blank" rel="noopener noreferrer" className="hover:text-[#078fcd] transition-colors">WhatsApp</a>
           </div>
         </div>
@@ -257,9 +257,9 @@ export default function Home() {
             <h2 className="text-[3rem] md:text-[4.45rem] lg:text-[5.75rem] font-melody tracking-tighter leading-[0.9]">
               Let's create <br /> something amazing.
             </h2>
-            {/* <a href="mailto:hello@madewebs.com" className="text-[1.2rem] md:text-[1.5rem] font-geist font-light hover:opacity-70 transition-opacity border-b border-white/30 hover:border-white w-fit pb-1">
-              hello@madewebs.com
-            </a> */}
+            <a href="mailto:hello@madewebs.com" className="text-[1.2rem] md:text-[1.5rem] font-geist font-light hover:opacity-70 transition-opacity border-b border-white/30 hover:border-white w-fit pb-1">
+              info@madewebs.com
+            </a>
           </div>
 
           {/* Links Grid */}
@@ -269,7 +269,7 @@ export default function Home() {
               <ul className="flex flex-col gap-3">
                 <li><a href="https://www.instagram.com/madewebs" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Instagram</a></li>
                 <li><a href="https://www.linkedin.com/company/madewebs/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-gray-300 transition-colors">Gmail</a></li>
+                <li><a href="mailto:info@madewebs.in" className="hover:text-gray-300 transition-colors">Gmail</a></li>
               </ul>
             </div>
 
