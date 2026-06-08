@@ -6,6 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLenis } from "lenis/react";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true }); // Prevent mobile address bar show/hide from causing layout stutters
@@ -18,9 +19,33 @@ import Contact from "./Components/Contact";
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lenis = useLenis();
+  const hasScrolledRef = useRef(false);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+
+    // Update the URL without triggering a native jump
+    if (hash !== 'body') {
+      window.history.pushState(null, '', hash);
+    } else {
+      window.history.pushState(null, '', window.location.pathname);
+    }
+
+    if (lenis) {
+      // Use immediate: true to instantly snap to the section. 
+      // This prevents the user from being forced to watch the pinned "Services" section 
+      // fast-forward its horizontal scroll while smoothly sliding down the page.
+      lenis.scrollTo(hash, { immediate: true });
+    } else {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView();
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   useEffect(() => {
-    // Refresh ScrollTrigger after a short delay to calculate trigger coordinates starting from the top
+    // Refresh ScrollTrigger after a short delay to account for image loads and layout shifts
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 250);
@@ -29,7 +54,7 @@ export default function Home() {
 
   useGSAP(() => {
     // Force manual scroll restoration and scroll to top BEFORE creating any ScrollTriggers
-    // This prevents scrub animations from playing in reverse on reload
+    // This ensures pin spacers and offsets are calculated from a clean 0 state.
     if (typeof window !== 'undefined') {
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'manual';
@@ -97,6 +122,19 @@ export default function Home() {
       });
     }
 
+    // Instantly jump to hash if present to prevent showing intermediate sections on load
+    if (window.location.hash && !hasScrolledRef.current) {
+      hasScrolledRef.current = true;
+      const el = document.querySelector(window.location.hash) as HTMLElement;
+      if (el) {
+        // Using requestAnimationFrame to ensure DOM is ready and ScrollTrigger has applied pins
+        requestAnimationFrame(() => {
+          window.scrollTo(0, el.offsetTop);
+          if (lenis) lenis.scrollTo(el.offsetTop, { immediate: true });
+        });
+      }
+    }
+
   }, { scope: containerRef });
 
   return (
@@ -115,9 +153,10 @@ export default function Home() {
 
         {/* Nav Links */}
         <ul className="nav-element hidden lg:flex text-[#36454F] lg:space-x-6 text-[clamp(1.2rem,1.8vw,1.8rem)] font-light tracking-tighter items-center justify-center flex-1">
-          <li><Link href="#services">Services</Link></li>
-          <li><Link href="#works">Works</Link></li>
-          <li><Link href="#contact">Contact</Link></li>
+          <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#078fcd] transition-colors cursor-pointer">About</a></li>
+          <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-[#078fcd] transition-colors cursor-pointer">Services</a></li>
+          <li><a href="#works" onClick={(e) => handleNavClick(e, '#works')} className="hover:text-[#078fcd] transition-colors cursor-pointer">Works</a></li>
+          <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-[#078fcd] transition-colors cursor-pointer">Contact</a></li>
         </ul>
 
         {/* Socials */}
@@ -151,33 +190,41 @@ export default function Home() {
               style={{ transitionDelay: isMobileMenuOpen ? '100ms' : '0ms' }}
               className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
             >
-              <Link href="#" onClick={() => setIsMobileMenuOpen(false)} className="hover:opacity-75 transition-opacity block">
+              <a href="#" onClick={(e) => handleNavClick(e, 'body')} className="hover:opacity-75 transition-opacity block cursor-pointer">
                 Home
-              </Link>
+              </a>
+            </li>
+            <li
+              style={{ transitionDelay: isMobileMenuOpen ? '125ms' : '0ms' }}
+              className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
+            >
+              <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:opacity-75 transition-opacity block cursor-pointer">
+                About
+              </a>
             </li>
             <li
               style={{ transitionDelay: isMobileMenuOpen ? '150ms' : '0ms' }}
               className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
             >
-              <Link href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:opacity-75 transition-opacity block">
+              <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:opacity-75 transition-opacity block cursor-pointer">
                 Services
-              </Link>
+              </a>
             </li>
             <li
               style={{ transitionDelay: isMobileMenuOpen ? '200ms' : '0ms' }}
               className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
             >
-              <Link href="#works" onClick={() => setIsMobileMenuOpen(false)} className="hover:opacity-75 transition-opacity block">
+              <a href="#works" onClick={(e) => handleNavClick(e, '#works')} className="hover:opacity-75 transition-opacity block cursor-pointer">
                 Works
-              </Link>
+              </a>
             </li>
             <li
               style={{ transitionDelay: isMobileMenuOpen ? '250ms' : '0ms' }}
               className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
             >
-              <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:opacity-75 transition-opacity block">
+              <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:opacity-75 transition-opacity block cursor-pointer">
                 Contact
-              </Link>
+              </a>
             </li>
           </ul>
 
@@ -211,12 +258,12 @@ export default function Home() {
             <p className="hero-line font-geist text-[1.3rem] font-light md:text-[2rem] leading-[1.4rem] md:leading-[1.8rem] md:max-w-[80%]">
               MadeWebs is a digital agency specializing in web design, eCommerce, branding, and creative solutions.
             </p>
-            <a href="#contact" className="hero-sub-element flex bg-white justify-center text-black p-3 text-[1rem] w-fit font-light rounded-xs">Get Started </a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hero-sub-element flex bg-white justify-center text-black p-3 text-[1rem] w-fit font-light rounded-xs cursor-pointer">Get Started </a>
           </div>
         </div>
       </section >
 
-      <section className="relative z-10 w-full px-4 md:px-14 py-10">
+      <section id="about" className="relative z-10 w-full px-4 md:px-14 py-10">
         <div className="flex h-auto md:min-h-screen justify-center items-start flex-col gap-4 w-full md:max-w-[90%]">
           <p className="font-light text-[clamp(3rem,5vw,5rem)] text-start tracking-tighter font-melody leading-[3rem] md:leading-[6rem] font-medium w-full">
             About Us
@@ -261,10 +308,11 @@ export default function Home() {
             <div className="flex flex-col gap-6">
               <h3 className="font-medium text-gray-900 uppercase tracking-widest text-sm">Sitemap</h3>
               <ul className="flex flex-col gap-3">
-                <li><Link href="#" className="hover:text-gray-300 transition-colors">Home</Link></li>
-                <li><Link href="#services" className="hover:text-gray-300 transition-colors">Services</Link></li>
-                <li><Link href="#works" className="hover:text-gray-300 transition-colors">Works</Link></li>
-                <li><Link href="#contact" className="hover:text-gray-300 transition-colors">Contact</Link></li>
+                <li><a href="#" onClick={(e) => handleNavClick(e, 'body')} className="hover:text-gray-300 transition-colors cursor-pointer">Home</a></li>
+                <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-gray-300 transition-colors cursor-pointer">About</a></li>
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-gray-300 transition-colors cursor-pointer">Services</a></li>
+                <li><a href="#works" onClick={(e) => handleNavClick(e, '#works')} className="hover:text-gray-300 transition-colors cursor-pointer">Works</a></li>
+                <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-gray-300 transition-colors cursor-pointer">Contact</a></li>
               </ul>
             </div>
           </div>

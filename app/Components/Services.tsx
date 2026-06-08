@@ -13,7 +13,7 @@ const servicesData = [
     num: "01",
     title: "Web Development",
     desc: "We build fast, scalable, and secure websites tailored to your unique business needs. From landing pages to complex web applications, we use the latest technologies to bring your vision to life.",
-    image: "/services/web.jpeg"
+    image: "/services/services1.jpeg"
   },
   {
     num: "02",
@@ -25,13 +25,13 @@ const servicesData = [
     num: "03",
     title: "Brand Identity",
     desc: "Comprehensive branding services including logo design, typography, color palettes, and visual guidelines to ensure you stand out in a crowded market.",
-    image: "/services/branding.jpeg"
+    image: "/services/services2.webp"
   },
   {
     num: "04",
     title: "Graphical Design",
     desc: "Eye-catching posters, social media creatives, banners, and marketing materials designed to communicate your message with clarity and visual impact across every platform.",
-    image: "/services/graphical.jpeg"
+    image: "/services/services3.jpeg"
   },
 ];
 
@@ -100,9 +100,9 @@ export default function Services() {
   }, { scope: containerRef });
 
   return (
-    <div className="relative">
+    <div id="services" className="relative">
       {/* h-[100vh] ensures the section perfectly fills the screen with no blank space above or below, and justify-center keeps the content perfectly centered! */}
-      <section id="services" ref={containerRef} className="w-full px-4 md:px-14 h-[100dvh] flex flex-col justify-center items-start gap-4 md:gap-8 overflow-hidden">
+      <section ref={containerRef} className="w-full px-4 md:px-14 h-[100dvh] flex flex-col justify-center items-start gap-4 md:gap-8 overflow-hidden">
 
         {/* Top Side - Title Section */}
         <div className="w-full shrink-0">
